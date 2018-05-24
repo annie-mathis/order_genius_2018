@@ -1,0 +1,29 @@
+<%= form_with(model: @new_order, url: [@restaurant, @new_order]) do |form| %>
+  <% if new_order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(new_order.errors.count, "error") %> prohibited this new_order from being saved:</h2>
+
+      <ul>
+      <% new_order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :restaurant_id %>
+    <%= form.select 'restaurant_id',
+        options_from_collection_for_select(@restaurants, "id", "name") %>
+  </div>
+
+  <div class="field">
+  <%= form.label :customer_id %>
+  <%= form.select 'customer_id',
+      options_from_collection_for_select(@customers, "id", "name") %>
+</div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

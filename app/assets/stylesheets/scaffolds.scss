@@ -1,6 +1,15 @@
+html {
+  background: rgb(2,0,36);
+  background: linear-gradient(158deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 34%, rgba(0,206,247,1) 100%);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 body {
-  background-color: #fff;
-  color: #333;
+  // background-color: #fff;
+  height:800px;
+
+  color: white;
   margin: 33px;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
@@ -20,15 +29,15 @@ pre {
 }
 
 a {
-  color: #000;
+  color: lime;
 
   &:visited {
-    color: #666;
+    color: green;
   }
 
   &:hover {
     color: #fff;
-    background-color: #000;
+    // background-color: #000;
   }
 }
 

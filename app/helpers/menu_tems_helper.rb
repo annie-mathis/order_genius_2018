@@ -1,0 +1,2 @@
+module MenuTemsHelper
+end
