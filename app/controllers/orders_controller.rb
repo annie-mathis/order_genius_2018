@@ -10,6 +10,8 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   def show
+    @order_menu_items = OrderMenuItem.all
+    @menu_items = MenuItem.all
   end
 
   # GET /orders/new
@@ -30,13 +32,12 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(order_params)
-    # byebug
+    # @order_menu_items = OrderMenuItem.new(order_menu_items_params)
 
     respond_to do |format|
       if @order.save
         # format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.html { redirect_to restaurant_order_path(id: @order), notice: 'Order was successfully created.' }
-
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new }
@@ -77,6 +78,7 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:customer_id, :restaurant_id, :menu_item_ids)
+      params.require(:order).permit(:customer_id, :restaurant_id, :menu_item_ids => [])
     end
+
 end

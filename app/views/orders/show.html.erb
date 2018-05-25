@@ -9,3 +9,18 @@
   <strong>Restaurant:</strong>
   <%= @order.restaurant.name %>
 </p>
+
+<p>
+	<% @order_menu_items.each do |i| %>
+          
+        <% if i.order_id == @order.id %>
+          <p>
+          	<% @items = MenuItem.select{|menu_item| menu_item.id == i.menu_item_id} %>
+          	<% @items.each do |show_item| %>
+          		<%= show_item.name %>
+          		<%= show_item.price %>
+          	<% end %>
+          </p>
+        <% end %>
+    <% end %>
+</p>
