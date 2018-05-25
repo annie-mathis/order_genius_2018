@@ -11,16 +11,32 @@
 </p>
 
 <p>
-	<% @order_menu_items.each do |i| %>
-          
-        <% if i.order_id == @order.id %>
-          <p>
-          	<% @items = MenuItem.select{|menu_item| menu_item.id == i.menu_item_id} %>
-          	<% @items.each do |show_item| %>
-          		<%= show_item.name %>
-          		<%= show_item.price %>
-          	<% end %>
-          </p>
-        <% end %>
-    <% end %>
+	<table style="border: 2px solid white;">
+
+		<tr>
+			<th>Item</th>
+			<th>Price</th>
+		</tr>
+
+		<% @total = 0 %>
+
+		<% @order_menu_items.each do |i| %>	          
+	        <% if i.order_id == @order.id %>
+	          	<% @items = MenuItem.select{|menu_item| menu_item.id == i.menu_item_id} %>
+	          	<% @items.each do |show_item| %>
+	          		<% @total = @total + show_item.price %>
+	          		<tr>
+		          		<td><%= show_item.name %></td>
+		          		<td><%= number_to_currency(show_item.price) %></td>
+	          		</tr>
+	          	<% end %>
+	        <% end %>
+	    <% end %>
+
+	    <tr>
+	    	<th>Total</th>
+	    	<th><%= number_to_currency(@total) %></th>
+	    </tr>
+
+	</table>
 </p>
