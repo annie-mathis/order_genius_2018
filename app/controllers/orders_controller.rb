@@ -17,6 +17,7 @@ class OrdersController < ApplicationController
     @order = Order.new
     @customers = Customer.all
     @restaurants = Restaurant.all
+    @restaurant = Restaurant.find(params[:restaurant_id])
   end
 
   # GET /orders/1/edit
@@ -29,6 +30,7 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(order_params)
+    # byebug
 
     respond_to do |format|
       if @order.save
@@ -73,6 +75,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:customer_id, :restaurant_id)
+      params.require(:order).permit(:customer_id, :restaurant_id, :menu_item_ids)
     end
 end
