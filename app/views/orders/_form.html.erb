@@ -27,9 +27,11 @@
 </div>
 -->
 
-<%=
-  collection_check_boxes(:order, :menu_item_ids, MenuItem.select{|menu_item| menu_item.restaurant_id == @restaurant.id}, :id, :name)
-%>
+<%= collection_check_boxes(:order, :menu_item_ids, MenuItem.select{|menu_item| menu_item.restaurant_id == @restaurant.id}, :id, :name) do |b| %>
+       <%= b.label class:'label-checkbox' do%>
+        <%=b.check_box + b.text%>
+       <%end%>
+   <% end %>
 
   <div class="actions">
     <%= form.submit %>
