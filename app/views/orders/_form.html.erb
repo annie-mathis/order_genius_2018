@@ -28,7 +28,7 @@
 -->
 
 <%=
-  collection_check_boxes(:order, :menu_item_ids, MenuItem.all, :id, :name)
+  collection_check_boxes(:order, :menu_item_ids, MenuItem.select{|menu_item| menu_item.restaurant_id == @restaurant.id}, :id, :name)
 %>
 
   <div class="actions">
