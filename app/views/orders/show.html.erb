@@ -1,19 +1,29 @@
 <p id="notice"><%= notice %></p>
 
+<style>
+	table,th,tr,td {
+		border: 1px solid white;
+	}
+
+	table {
+		width: 200px;
+		text-align: left;
+	}
+
+	.money {
+		text-align: right;
+		font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+	}
+</style>
+
 <p>
-  <strong>Customer:</strong>
-  <%= @order.customer.name %>
+	<strong><%= @order.restaurant.name %></strong> order for <strong><%= @order.customer.name %></strong>
 </p>
 
 <p>
-  <strong>Restaurant:</strong>
-  <%= @order.restaurant.name %>
-</p>
+	<table>
 
-<p>
-	<table style="border: 2px solid white;">
-
-		<tr>
+		<tr style="text-align: center;">
 			<th>Item</th>
 			<th>Price</th>
 		</tr>
@@ -27,15 +37,15 @@
 	          		<% @total = @total + show_item.price %>
 	          		<tr>
 		          		<td><%= show_item.name %></td>
-		          		<td><%= number_to_currency(show_item.price) %></td>
+		          		<td class="money"><%= number_to_currency(show_item.price) %></td>
 	          		</tr>
 	          	<% end %>
 	        <% end %>
 	    <% end %>
 
 	    <tr>
-	    	<th>Total</th>
-	    	<th><%= number_to_currency(@total) %></th>
+	    	<td>Total</td>
+	    	<td class="money"><%= number_to_currency(@total) %></td>
 	    </tr>
 
 	</table>
