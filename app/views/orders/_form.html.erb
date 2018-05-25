@@ -27,6 +27,10 @@
 </div>
 -->
 
+<%=
+  collection_check_boxes(:order, :menu_item_ids, MenuItem.all, :id, :name)
+%>
+
   <div class="actions">
     <%= form.submit %>
   </div>
